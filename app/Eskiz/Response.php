@@ -28,6 +28,9 @@ class Response
     }
     protected function refreshToken() // update token
     {
+        if (Cache::has('token')){
+            return Cache::get('token');
+        }
         $response = Http::post('notify.eskiz.uz/api/auth/login', [
             'email' => $this->email,
             'password' => $this->password
